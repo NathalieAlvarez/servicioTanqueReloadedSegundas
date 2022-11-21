@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://com.Tanque" 
+    targetNamespace="http://com.Tanque" elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"> 
+    
+    <xs:element name="nuevaSolicitud">
+        <xs:annotation>
+            <xs:documentation>
+                Para hacer una solicitud.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clienteCurp">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                        </xs:restriction>
+                    </xs:simpleType>       
+                </xs:element>
+                <xs:element name="litros">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="1500"></xs:maxInclusive>
+                            <xs:minInclusive value="5"></xs:minInclusive>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="fecha">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(\d{2}/\d{2}/\d{4})">
+                            </xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+        
+    </xs:element>
+    <xs:element name="solicitudID">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idConsulta">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int"> 
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="solicitud">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idSolicitud">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="idTank">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="clienteCurp">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="litros">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:maxInclusive value="1500"></xs:maxInclusive>
+                            <xs:minInclusive value="5"></xs:minInclusive>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="fecha">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="(\d{2}/\d{2}/\d{4})">
+                            </xs:pattern>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://com.Tanque" targetNamespace="http://com.Tanque" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="tanqueConsulta">
+		<xs:annotation>
+			<xs:documentation>Consulta de un tanque</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nombre" type = "xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="tanqueDelete">
+		<xs:annotation>
+			<xs:documentation>Borrado de un tanque</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nombre" type = "xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="tanqueAlta">
+		<xs:annotation>
+			<xs:documentation>Alta de tanques</xs:documentation>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element name="nombre" type = "xs:string"/>
+                <xs:element name="capacidad">
+					<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+                </xs:element>
+                <xs:element name="tiempoLlenado">
+					<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+                </xs:element>
+                <xs:element name="ubicacion">
+                	<xs:simpleType>
+                		<xs:restriction base="xs:int">
+                			<xs:minInclusive value="1"/>
+                			<xs:maxInclusive value="3"/>
+                		</xs:restriction>
+                	</xs:simpleType>
+                </xs:element>
+                <xs:element name="cantidadActual" minOccurs="1">
+                	<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+	</xs:element>
+	
+	<xs:element name="tanqueUpdate">
+		<xs:annotation>
+			<xs:documentation>Update de tanque</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<!-- Elemento (nombre) que sirve para encontrar el tanque a modificar-->
+				<xs:element name="nombreID" type = "xs:string"/>
+				<!-- Elementos que se van a modificar -->
+				<xs:element name="nombre" type = "xs:string"/>
+				<xs:element name="capacidad">
+					<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="tiempoLlenado">
+					<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ubicacion">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+							<xs:maxInclusive value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="cantidadActual" minOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:int"/>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

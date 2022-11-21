@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://com.Tanque" targetNamespace="http://com.Tanque" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="clienteCURP">
+		<xs:annotation>
+			<xs:documentation>Consulta la informacion de cliente por su CURP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CURP">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{1}[BCDFGHJKLMNPQRSTVWXYZ]{3}([A-Z]{2})?([0-9]{1})?"></xs:pattern>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="cliente">
+		<xs:annotation>
+			<xs:documentation>Alta de un cliente</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="nombre" type="xs:string"/>
+				<xs:element name="ubicacion">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+							<xs:maxInclusive value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="direccion" type="xs:string"></xs:element>
+				<xs:element name="CURP">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:pattern value="[A-Z]{4}[0-9]{6}[HM]{1}[A-Z]{1}[BCDFGHJKLMNPQRSTVWXYZ]{3}([A-Z]{2})?([0-9]{1})?"></xs:pattern>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

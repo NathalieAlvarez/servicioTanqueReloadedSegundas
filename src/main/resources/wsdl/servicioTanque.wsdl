@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="http://com.Tanque" targetNamespace="http://com.Tanque">
+ 
+ 
+	<wsdl:types>
+		<xs:schema targetNamespace="http://com.Tanque" elementFormDefault="qualified">
+			<xs:include schemaLocation="..\xsd\commons.xsd"/>
+			<xs:include schemaLocation="..\xsd\tanques.xsd"/>
+			<xs:include schemaLocation="..\xsd\cliente.xsd"/>
+			<xs:include schemaLocation="..\xsd\solicitudServicio.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	
+	
+	
+	<!-- para agregar un nuevo tanque o cliente -->
+	<wsdl:message name="tanquesRequest">
+		<wsdl:part name="parameter" element="tns:tanqueAlta"/>
+	</wsdl:message>
+	<wsdl:message name="clientesRequest">
+		<wsdl:part name="parameter" element="tns:cliente"/>
+	</wsdl:message>
+	<wsdl:message name="solicitudesRequest">
+		<wsdl:part name="parameter" element="tns:nuevaSolicitud"/>
+	</wsdl:message>
+	<!-- para solo pedir los CURPs/nombres-->
+	<wsdl:message name="tanqueNombreRequest">
+		<wsdl:part name="parameter" element="tns:tanqueConsulta"/>
+	</wsdl:message>
+	<!-- PARA ELIMINAR UN TANQUE -->
+	<wsdl:message name="tanqueDeleteRequest">
+		<wsdl:part name="parameter" element="tns:tanqueDelete"/>
+	</wsdl:message>
+	<!-- PARA UPDATE DE UN TANQUE -->
+	<wsdl:message name="tanqueUpdateRequest">
+		<wsdl:part name="parameter" element="tns:tanqueUpdate"/>
+	</wsdl:message>
+	
+	
+	<wsdl:message name="clientesCURPRequest">
+		<wsdl:part name="parameter" element="tns:clienteCURP"/>
+	</wsdl:message>
+	<wsdl:message name="solicitudesIDRequest">
+		<wsdl:part name="parameter" element="tns:solicitudID"/>
+	</wsdl:message>
+	<!-- respuestas -->
+	<wsdl:message name="solicitudResponse">
+		<wsdl:part name="parameter" element="tns:solicitud"/>
+	</wsdl:message>
+	<wsdl:message name="ackResponse">
+		<wsdl:part name="parameter" element="tns:ack"/>
+	</wsdl:message>
+
+	
+	
+	<wsdl:portType name="TanquePortType">
+		<wsdl:operation name="insertTanqueOperation">
+			<wsdl:input message="tns:tanquesRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+
+		<!--OPERACION PARA ELIMNAR UN TANQUE-->
+		<wsdl:operation name="deleteTanqueOperation">
+			<wsdl:input message="tns:tanqueDeleteRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+		<!--OPERACION PARA UPDATE DE UN TANQUE-->
+		<wsdl:operation name="updateTanqueOperation">
+			<wsdl:input message="tns:tanqueUpdateRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+		
+		
+		<wsdl:operation name="showTanqueOperation">
+			<wsdl:input message="tns:tanqueNombreRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:portType name="ClientePortType">
+		<wsdl:operation name="insertClienteOperation">
+			<wsdl:input message="tns:clientesRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="updateClienteOperation">
+			<wsdl:input message="tns:clientesCURPRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="deleteClienteOperation">
+			<wsdl:input message="tns:clientesCURPRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="showClienteOperation">
+			<wsdl:input message="tns:clientesCURPRequest"/>
+			<wsdl:output message="tns:ackResponse"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	<wsdl:portType name="SolicitudPortType">
+		<wsdl:operation name="insertSolicitudOperation">
+			<wsdl:input message="tns:solicitudesRequest"></wsdl:input>
+			<wsdl:output message="tns:solicitudResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	
+	
+	
+	
+		<wsdl:binding name="TanqueBinding" type="tns:TanquePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="insertTanqueOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateTanqueOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>			
+		</wsdl:operation>
+		
+		<wsdl:operation name="deleteTanqueOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			
+		</wsdl:operation>	
+			<wsdl:operation name="showTanqueOperation">
+				<soap:operation soapAction="http://com.Tanque"/>
+				<wsdl:input>
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output>
+					<soap:body use="literal"/>
+				</wsdl:output>
+			</wsdl:operation>
+	</wsdl:binding>
+	
+	<wsdl:binding name="ClienteBinding" type="tns:ClientePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="insertClienteOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateClienteOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteClienteOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="showClienteOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>	
+	</wsdl:binding>
+	
+	<wsdl:binding name="SolicitudBinding" type="tns:SolicitudPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="insertSolicitudOperation">
+			<soap:operation soapAction="http://com.Tanque"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	
+	
+	
+	
+	<wsdl:service name="TanqueService">
+		<wsdl:port name="TanquePort" binding="tns:TanqueBinding">
+			<soap:address location="http://localhost:8081/ws/servicioTanque"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+	<wsdl:service name="ClienteService">
+		<wsdl:port name="ClientePort" binding="tns:ClienteBinding">
+			<soap:address location="http://localhost:8081/ws/servicioTanque"/>
+		</wsdl:port>
+	</wsdl:service>
+	
+	<wsdl:service name="SolicitudService">
+		<wsdl:port name="SolicitudPort" binding="tns:SolicitudBinding">
+			<soap:address location="http://localhost:8081/ws/servicioTanque"/>
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
